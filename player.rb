@@ -29,11 +29,11 @@ class Player
     end
 
     def go_up
-        @y -= 2*$scale
+        @y -= 32*$scale
     end
 
     def go_down
-        @y += 2*$scale
+        @y += 32*$scale
     end
 
     def move

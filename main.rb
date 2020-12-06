@@ -48,7 +48,8 @@ class GameWindow < Gosu::Window
         @inMenu = true #bool für menu, startet ins menu
         self.switchToMenu
 
-        @font = Gosu::Font.new(20)
+        @font = Gosu::Font.new(16*($scale-1), name: "media/pixelart.ttf")
+        puts @font.name
         
         @menu_system = MenuSystem.new(self) # funktioniert autark
 
@@ -88,54 +89,8 @@ class GameWindow < Gosu::Window
 
     def update
 
-        if @inMenu == true
-
-            if Gosu.button_down? Gosu::KB_DOWN and (Gosu.button_down? Gosu::KB_DOWN) != @button_last_state[0]  # or Gosu::button_down? Gosu::GP_DOWN 
-
-                @button_last_state[0] = true
-
-                # nächsten button active setzen
-                @menu_system.next_element
-            end
-
-            if !Gosu.button_down? Gosu::KB_DOWN
-                @button_last_state[0] = false
-            end
-
-            if Gosu.button_down? Gosu::KB_UP and (Gosu.button_down? Gosu::KB_UP) != @button_last_state[1]      # or Gosu::button_down? Gosu::KB_UP
-
-                @button_last_state[1] = true
-
-                # letzten button active setzen
-                @menu_system.last_element
-            end
-
-            if !Gosu.button_down? Gosu::KB_UP
-                @button_last_state[1] = false
-            end
-
-            if Gosu.button_down? Gosu::KB_RETURN # todo Gamepad
-
-                @button_last_state[2] = true
-
-                # logik zum button decodieren
-                @menu_system.select
-            end
-
-            if !Gosu.button_down? Gosu::KB_RETURN
-                @button_last_state[2] = false
-            end
-
-        else
+        if @inMenu == false
             # spiel läuft
-
-            if Gosu.button_down? Gosu::KB_DOWN or Gosu::button_down? Gosu::GP_DOWN
-                @player.go_down
-            end
-    
-            if Gosu.button_down? Gosu::KB_UP or Gosu::button_down? Gosu::GP_UP
-                @player.go_up
-            end
 
 
             # himmel # darf sich nur alle 4 Ticks bewegen,Hintergrund alle 2 Ticks ==> Himmel jeden Tick -1, Hintergrund -2, Straße -4
@@ -190,14 +145,17 @@ class GameWindow < Gosu::Window
     def button_down(id)
         if @inMenu == true
             case id
-            when KB_ESCAPE
+            when Gosu::KB_ESCAPE
                 close
 
-            when KB_RETURN
+            when Gosu::KB_RETURN
+                @menu_system.select
 
-            when KB_DOWN
+            when Gosu::KB_DOWN
+                @menu_system.next_element
 
-            when KB_UP
+            when Gosu::KB_UP
+                @menu_system.last_element
 
             else
                 super #für alt + enter
@@ -205,20 +163,19 @@ class GameWindow < Gosu::Window
             end
         else
             case id
-            when KB_ESCAPE
+            when Gosu::KB_ESCAPE
                 switchToMenu
 
-            when KB_RETURN
+            when Gosu::KB_DOWN
+                @player.go_down
 
-            when KB_DOWN
-
-            when KB_UP
+            when Gosu::KB_UP
+                @player.go_up
 
             else
                 super #für alt + enter
 
             end
-
         end
     end
 end

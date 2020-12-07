@@ -4,6 +4,7 @@
 ## Vorbereitung
 
 Benötigt wird [Gosu](https://github.com/gosu/gosu). Am einfachsten installiert man es mit: 
+
 	gem install gosu
 
 

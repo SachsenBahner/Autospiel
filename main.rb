@@ -57,6 +57,7 @@ class GameWindow < Gosu::Window
         @himmelUnten = Array.new
 
         @ambientGreen = Array.new
+        @berge = Array.new
 
         @button_last_state = Array.new
 
@@ -65,7 +66,7 @@ class GameWindow < Gosu::Window
 
     def switchToMenu
         @inMenu = true
-        @music = Gosu::Song.new("media/hauptmenu.ogg")
+        @music = Gosu::Song.new("media/hauptmenu-loop.ogg")
         @music.play(true)
     end
 
@@ -81,9 +82,12 @@ class GameWindow < Gosu::Window
             @himmelUnten.push(Sky.new(i*32*$scale, 1))  #Sky.new(x, y)
         end
 
-        5.times do |i|
+        6.times do |i|
             @ambientGreen.push(Green.new(i*64*$scale, 1))
+            @berge.push(Berg.new(i*64*$scale, 1))
         end
+
+        
 
     end
 
@@ -101,11 +105,13 @@ class GameWindow < Gosu::Window
                 @himmelUnten.push(Sky.new($resolution.dig($res, 0), 1))  #Sky.new(x, y)
 
                 @ambientGreen.push(Green.new($resolution.dig($res, 0), 1))
+                @berge.push(Berg.new($resolution.dig($res, 0), 1))
 
                 if @himmelOben.first.get_x < -32*$scale
                     @himmelOben.shift
                     @himmelUnten.shift
                     @ambientGreen.shift
+                    @berge.shift
                 end
             end
 
@@ -135,6 +141,7 @@ class GameWindow < Gosu::Window
             @himmelOben.each { |element| element.draw }
             @himmelUnten.each { |element| element.draw }
             @ambientGreen.each { |element| element.draw }
+            @berge.each { |element| element.draw }
 
 
             #@font.draw_text("Punkte: #{@player.score}", 10, 10, ZOrder::UI, 1.0, 1.0, Gosu::Color::YELLOW)
@@ -164,7 +171,8 @@ class GameWindow < Gosu::Window
         else
             case id
             when Gosu::KB_ESCAPE
-                switchToMenu
+                switchToMen
+
 
             when Gosu::KB_DOWN
                 @player.go_down

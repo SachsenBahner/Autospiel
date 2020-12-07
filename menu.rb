@@ -36,6 +36,7 @@ class MenuSystem
 
     def select
         @select_sound = Gosu::Sample.new("media/menu_select_sound.ogg")
+        @select_sound.play
 
         case @active_id
         when 0

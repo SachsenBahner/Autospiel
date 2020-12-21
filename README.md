@@ -1,17 +1,26 @@
 # Autogame
 
+Ein kleines Spiel geschrieben in Ruby mit Gosu.
+
+---
+
+
+
 ## Vorbereitung
 
-Benötigt wird [Gosu](https://github.com/gosu/gosu). Am einfachsten installiert man es mit: 
+Zum compilieren wird neben Ruby auch [Gosu](https://github.com/gosu/gosu) benötigt. Am einfachsten installiert man es mit: 
 `gem install gosu`
 
-## Tabellen
-
-Tabellen Beispiel (für später):
-|                |ASCII                          |HTML                         |
-|----------------|-------------------------------|-----------------------------|
-|Single backticks|`'Isn't this fun?'`            |'Isn't this fun?'            |
-|Quotes          |`"Isn't this fun?"`            |"Isn't this fun?"            |
-|Dashes          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
+Für die Entwicklung hat sich Visual Studio Code mit den Erweiterungen **Ruby** und **CodeRunner **bewährt.
 
 
+
+---
+
+## Mitwirkende:
+
+Software:            Cedric
+
+Soundeffekte:    Cedric
+
+Musik:                 Matthias 

@@ -196,7 +196,7 @@ class GameWindow < Gosu::Window
         else
             case id
             when Gosu::KB_ESCAPE
-                switchToMen
+                switchToMenu
 
 
             when Gosu::KB_DOWN

@@ -99,7 +99,7 @@ class Enemy
         welchesBild = rand(anzahlVerschAutos)
 
         @img = @bild[welchesBild]
-        @move_factor = 2
+        @move_factor = 4
         @posZ = ZOrder::GEGNER
     end
 
